@@ -1,4 +1,0 @@
-package com.GeekUp.Shop.dto;
-
-public class CreateProductRequest {
-}
