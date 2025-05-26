@@ -3,7 +3,7 @@ package com.GeekUp.Shop.controller;
 import com.GeekUp.Shop.dto.ResultObject;
 import com.GeekUp.Shop.dto.request.CreateProductRequest;
 import com.GeekUp.Shop.dto.response.BaseProductResponse;
-import com.GeekUp.Shop.service.IProductService;
+import com.GeekUp.Shop.service.product.IProductService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

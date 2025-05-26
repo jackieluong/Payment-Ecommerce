@@ -1,10 +1,12 @@
 package com.GeekUp.Shop.controller;
 
 
+import com.GeekUp.Shop.constant.PaymentMethod;
 import com.GeekUp.Shop.dto.ResultObject;
 import com.GeekUp.Shop.dto.request.PaymentRequest;
 import com.GeekUp.Shop.dto.response.BasePaymentResponse;
 import com.GeekUp.Shop.dto.response.IpnResponse;
+import com.GeekUp.Shop.service.payment.IpnHandlerFactory;
 import com.GeekUp.Shop.service.payment.PaymentHandlerContext;
 import com.GeekUp.Shop.service.payment.IpnHandler;
 import com.GeekUp.Shop.util.RequestUtil;
@@ -29,15 +31,16 @@ import java.util.Map;
 public class PaymentController {
 
     private final PaymentHandlerContext paymentHandler;
-    private final IpnHandler ipnHandler;
+    private final IpnHandlerFactory ipnHandlerFactory;
 
     @Value("${app.frontend-url}")
     private String frontendUrl;
 
-    public PaymentController(PaymentHandlerContext paymentHandler, IpnHandler ipnHandler) {
+    public PaymentController(PaymentHandlerContext paymentHandler, IpnHandlerFactory ipnHandlerFactory) {
         this.paymentHandler = paymentHandler;
-        this.ipnHandler = ipnHandler;
+        this.ipnHandlerFactory = ipnHandlerFactory;
     }
+
 
     @PostMapping
     public ResponseEntity<ResultObject> createPayment(@Valid @RequestBody PaymentRequest paymentRequest, HttpServletRequest httpServletRequest) {
@@ -56,24 +59,25 @@ public class PaymentController {
     @GetMapping("/vnpay_ipn")
     IpnResponse processIpn(@RequestParam Map<String, String> params) {
         log.info("[VNPay Ipn] Params: {}", params);
-        return ipnHandler.process(params);
+
+        return ipnHandlerFactory.processIpn(PaymentMethod.VNPAY, params);
     }
 
     @GetMapping("/stripe-callback")
     void processStripeSuccess(@RequestParam Map<String, String> params, HttpServletRequest request, HttpServletResponse response) {
         log.info("[Stripe] Params: {}", params);
-        Session session = null;
-        try {
-            session = Session.retrieve(params.get("session_id"));
-            response.sendRedirect(frontendUrl);
-        }catch (StripeException exception){
-            log.error("[Stripe] Exception: {}", exception.getMessage());
-            throw new RuntimeException("Error retrieving session");
+
+        try{
+            Boolean success = ipnHandlerFactory.processIpn(PaymentMethod.STRIPE, params);
+
+            if(success.equals(Boolean.TRUE)){
+                response.sendRedirect(frontendUrl + "/payment?success=true");
+            }else {
+                response.sendRedirect(frontendUrl + "/payment?success=false");
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        log.info("[Stripe] Session: {}", session);
 
 
     }

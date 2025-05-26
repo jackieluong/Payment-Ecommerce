@@ -2,8 +2,8 @@ package com.GeekUp.Shop.entity;
 
 import com.GeekUp.Shop.constant.PaymentMethod;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 import java.time.Instant;
 
@@ -11,16 +11,22 @@ import java.time.Instant;
 @Table(name = "payments")
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Payment {
 
     @Id
     private long id;
 
+    @Column(nullable = false)
     private PaymentMethod paymentMethod;
 
     private double amount;
 
     private String transactionId;
+
+    private String sessionId;
 
     private Instant createdAt;
 

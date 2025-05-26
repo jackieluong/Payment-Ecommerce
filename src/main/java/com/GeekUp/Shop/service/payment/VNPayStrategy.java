@@ -18,14 +18,15 @@ import java.util.*;
 @Service
 @Slf4j
 @Primary
-public class VNPayStrategy implements IPaymentStrategy {
+public class VNPayStrategy extends IPaymentStrategy {
 
     private final VNPayConfig vnPayConfig;
 
     public VNPayStrategy(VNPayConfig vnPayConfig) {
-
+        super();
         this.vnPayConfig = vnPayConfig;
     }
+
 
     @Override
     public VNPayResponse processPayment(PaymentRequest request) {

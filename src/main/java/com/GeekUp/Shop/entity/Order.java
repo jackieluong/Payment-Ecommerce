@@ -64,6 +64,9 @@ public class Order {
 
     }
 
+    public Order(Long orderId){
+        this.id = orderId;
+    }
     public void addOrderItem(OrderItem orderItem) {
         if(this.orderItems == null){
             this.orderItems = new ArrayList<>();
@@ -81,4 +84,6 @@ public class Order {
     public void preUpdate() {
         updatedAt = Instant.now();
     }
+
+
 }

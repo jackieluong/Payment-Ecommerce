@@ -1,4 +1,4 @@
-package com.GeekUp.Shop.service.Impl;
+package com.GeekUp.Shop.service.order;
 
 import com.GeekUp.Shop.constant.OrderStatus;
 import com.GeekUp.Shop.constant.PaymentStatus;
@@ -12,9 +12,8 @@ import com.GeekUp.Shop.entity.User;
 import com.GeekUp.Shop.repository.OrderItemRepository;
 import com.GeekUp.Shop.repository.OrderRepository;
 import com.GeekUp.Shop.security.JwtUtil;
-import com.GeekUp.Shop.service.IOrderService;
 import com.GeekUp.Shop.service.payment.IPaymentStrategy;
-import com.GeekUp.Shop.service.IProductService;
+import com.GeekUp.Shop.service.product.IProductService;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;

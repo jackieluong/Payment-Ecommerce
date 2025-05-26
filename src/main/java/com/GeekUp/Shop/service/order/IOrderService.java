@@ -1,10 +1,8 @@
-package com.GeekUp.Shop.service;
+package com.GeekUp.Shop.service.order;
 
 import com.GeekUp.Shop.dto.request.CreateOrderRequest;
 import com.GeekUp.Shop.dto.response.BaseOrderResponse;
 import com.GeekUp.Shop.entity.Order;
-
-import java.util.List;
 
 public interface IOrderService {
 

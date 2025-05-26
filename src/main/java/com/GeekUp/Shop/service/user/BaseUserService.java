@@ -1,4 +1,4 @@
-package com.GeekUp.Shop.service.Impl;
+package com.GeekUp.Shop.service.user;
 
 import com.GeekUp.Shop.constant.Role;
 import com.GeekUp.Shop.dto.request.RegisterRequest;
@@ -7,12 +7,10 @@ import com.GeekUp.Shop.entity.User;
 import com.GeekUp.Shop.exception.DuplicateException;
 import com.GeekUp.Shop.repository.UserRepository;
 import com.GeekUp.Shop.security.JwtUtil;
-import com.GeekUp.Shop.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

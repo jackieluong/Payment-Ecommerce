@@ -6,7 +6,7 @@ import com.GeekUp.Shop.dto.request.RegisterRequest;
 import com.GeekUp.Shop.dto.response.RegisterResponse;
 import com.GeekUp.Shop.exception.DuplicateException;
 import com.GeekUp.Shop.security.JwtUtil;
-import com.GeekUp.Shop.service.IUserService;
+import com.GeekUp.Shop.service.user.IUserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

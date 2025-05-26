@@ -7,7 +7,7 @@ import com.GeekUp.Shop.dto.response.BasePaymentResponse;
 import com.GeekUp.Shop.dto.response.StripePaymentResponse;
 import com.GeekUp.Shop.entity.Order;
 import com.GeekUp.Shop.exception.PaymentException;
-import com.GeekUp.Shop.service.IOrderService;
+import com.GeekUp.Shop.service.order.IOrderService;
 import com.stripe.exception.StripeException;
 import com.stripe.model.checkout.Session;
 import com.stripe.param.checkout.SessionCreateParams;
@@ -19,11 +19,12 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class StripePaymentStrategy implements IPaymentStrategy {
+public class StripePaymentStrategy extends IPaymentStrategy {
 
     private IOrderService orderService;
 
     public StripePaymentStrategy(IOrderService orderService) {
+        super();
         this.orderService = orderService;
     }
 
@@ -62,6 +63,7 @@ public class StripePaymentStrategy implements IPaymentStrategy {
 
         SessionCreateParams params = SessionCreateParams.builder()
                 .addAllLineItem(lineItems)
+                .setClientReferenceId(String.valueOf(order.getId()))
                 .setMode(SessionCreateParams.Mode.PAYMENT)
                 .setSuccessUrl(StripeConfig.successUrl)
                 .setCancelUrl(StripeConfig.cancelUrl)
@@ -74,7 +76,7 @@ public class StripePaymentStrategy implements IPaymentStrategy {
             Session session = Session.create(params);
             return StripePaymentResponse.builder()
                     .status("SUCCESS")
-                    .message("Successful payment")
+                    .message("Successfully create payment url")
                     .sessionId(session.getId())
                     .sessionUrl(session.getUrl())
                     .build() ;

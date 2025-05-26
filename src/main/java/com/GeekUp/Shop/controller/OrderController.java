@@ -2,10 +2,8 @@ package com.GeekUp.Shop.controller;
 
 import com.GeekUp.Shop.dto.ResultObject;
 import com.GeekUp.Shop.dto.request.CreateOrderRequest;
-import com.GeekUp.Shop.dto.request.CreateProductRequest;
 import com.GeekUp.Shop.dto.response.BaseOrderResponse;
-import com.GeekUp.Shop.dto.response.BaseProductResponse;
-import com.GeekUp.Shop.service.IOrderService;
+import com.GeekUp.Shop.service.order.IOrderService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

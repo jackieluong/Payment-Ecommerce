@@ -1,13 +1,11 @@
-package com.GeekUp.Shop.service.Impl;
+package com.GeekUp.Shop.service.auth;
 
 
 import com.GeekUp.Shop.dto.request.LoginRequest;
 import com.GeekUp.Shop.dto.response.LoginResponse;
 import com.GeekUp.Shop.entity.Account;
-import com.GeekUp.Shop.exception.ResourceNotFoundException;
 import com.GeekUp.Shop.security.JwtUtil;
-import com.GeekUp.Shop.service.IAccountService;
-import com.GeekUp.Shop.service.IAuthService;
+import com.GeekUp.Shop.service.user.IAccountService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;

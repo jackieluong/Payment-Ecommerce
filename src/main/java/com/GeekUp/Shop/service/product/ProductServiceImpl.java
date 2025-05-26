@@ -1,4 +1,4 @@
-package com.GeekUp.Shop.service.Impl;
+package com.GeekUp.Shop.service.product;
 
 import com.GeekUp.Shop.dto.request.CreateProductRequest;
 import com.GeekUp.Shop.dto.response.BaseProductResponse;
@@ -9,7 +9,6 @@ import com.GeekUp.Shop.entity.ProductVariantOption;
 import com.GeekUp.Shop.repository.ProductRepository;
 import com.GeekUp.Shop.repository.ProductVariantRepository;
 import com.GeekUp.Shop.repository.VariantOptionRepository;
-import com.GeekUp.Shop.service.IProductService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -18,10 +17,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j

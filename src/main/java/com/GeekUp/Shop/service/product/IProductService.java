@@ -1,11 +1,10 @@
-package com.GeekUp.Shop.service;
+package com.GeekUp.Shop.service.product;
 
 import com.GeekUp.Shop.dto.request.CreateProductRequest;
 import com.GeekUp.Shop.dto.response.BaseProductResponse;
 import com.GeekUp.Shop.entity.ProductVariant;
 
 import java.util.List;
-import java.util.Set;
 
 public interface IProductService {
 

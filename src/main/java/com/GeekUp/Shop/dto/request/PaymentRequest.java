@@ -14,8 +14,6 @@ public class PaymentRequest {
     @NotNull(message = "Order Id is required")
     protected Long orderId;
 
-    protected Long userId;
-
     protected double totalAmount;
 
     @NotNull(message = "Payment method is required")

@@ -1,4 +1,4 @@
-package com.GeekUp.Shop.service;
+package com.GeekUp.Shop.service.user;
 
 
 import com.GeekUp.Shop.dto.request.RegisterRequest;

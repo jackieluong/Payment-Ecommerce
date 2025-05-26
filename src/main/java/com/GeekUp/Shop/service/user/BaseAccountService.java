@@ -1,8 +1,7 @@
-package com.GeekUp.Shop.service.Impl;
+package com.GeekUp.Shop.service.user;
 
 import com.GeekUp.Shop.entity.Account;
 import com.GeekUp.Shop.repository.AccountRepository;
-import com.GeekUp.Shop.service.IAccountService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

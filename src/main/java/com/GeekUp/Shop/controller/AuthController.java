@@ -4,7 +4,7 @@ package com.GeekUp.Shop.controller;
 import com.GeekUp.Shop.dto.ResultObject;
 import com.GeekUp.Shop.dto.request.LoginRequest;
 import com.GeekUp.Shop.dto.response.LoginResponse;
-import com.GeekUp.Shop.service.IAuthService;
+import com.GeekUp.Shop.service.auth.IAuthService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
