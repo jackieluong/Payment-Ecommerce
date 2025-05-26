@@ -15,7 +15,7 @@ app:
 
 hibernate:
   metamodel:
-    model_contributor: com.GeekUp.Shop.functions.PostgreSQLFunctionContributor
+    model_contributor: com.Payment.Shop.functions.PostgreSQLFunctionContributor
 
 spring:
   mail:
@@ -115,10 +115,10 @@ payment:
 
   stripe:
     secret-key: ${STRIPE_SECRET_KEY}
-    success-url: https://dev.payment.com/order/%s/status
+    success-url: ${BASE_URL}/api/v1/payments/stripe-callback?session_id={CHECKOUT_SESSION_ID}
     cancel-url: https://dev.payment.com/order/%s/status
   vnpay:
-    tmn-code: X5AL5D3N
+    tmn-code: ${VNPAY_TMN_CODE}
     secret-key: ${VNPAY_SECRET_KEY}
     init-payment-url: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
     return-url: https://dev.payment.com/order/%s/status

@@ -1,6 +1,6 @@
 package com.Payment.Shop.service.payment.IpnHandler;
 
-import com.GeekUp.Shop.constant.*;
+
 import com.Payment.Shop.constant.PaymentMethod;
 import com.Payment.Shop.constant.StripeCheckoutSessionStatus;
 import com.Payment.Shop.constant.StripeParams;
