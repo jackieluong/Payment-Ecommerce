@@ -6,8 +6,8 @@ This is a simple e-commerce project that demonstrates how to integrate third-par
 
 * 🛒 Basic shopping flow with select product variants, create orders, and checkout
 * 💳 Payment gateway integration with:
-    * VNPay (QR/ATM/Card)
-    * Stripe (Credit/Debit cards)
+    * VNPay 
+    * Stripe
 * 📦 Order creation and confirmation
 * 🔑 Support Authentication
 ## Documentation Links
