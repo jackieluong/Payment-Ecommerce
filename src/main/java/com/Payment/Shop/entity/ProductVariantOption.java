@@ -8,14 +8,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProductVariantOption {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private long id;
-
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "variant_option_seq")
-    @SequenceGenerator(name = "variant_option_seq", sequenceName = "variant_option_seq", allocationSize = 50)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "variant_option_seq")
+//    @SequenceGenerator(name = "variant_option_seq", sequenceName = "variant_option_seq", allocationSize = 50)
+//    private long id;
 
     private String attribute;
 

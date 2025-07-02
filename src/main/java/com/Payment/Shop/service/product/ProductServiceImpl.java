@@ -184,6 +184,11 @@ public BaseProductResponse createProduct(CreateProductRequest createProductReque
     }
 
     @Override
+    public List<ProductVariant> findAllProductVariantByVariantIdWithLock(List<Long> variantIds) {
+        return productVariantRepository.findAllByIdWithLockIn(variantIds);
+    }
+
+    @Override
     public void saveAllProductVariant(List<ProductVariant> productVariants) {
         try{
             productVariantRepository.saveAll(productVariants);
@@ -192,4 +197,11 @@ public BaseProductResponse createProduct(CreateProductRequest createProductReque
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public int updateStockOptimistic(Long variantId, Integer requestQuantity) {
+        return productVariantRepository.updateStockConditionally(variantId, requestQuantity);
+    }
+
+
 }

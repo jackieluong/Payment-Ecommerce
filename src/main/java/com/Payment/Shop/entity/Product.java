@@ -18,13 +18,14 @@ import java.util.List;
 @AllArgsConstructor
 public class Product {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_seq")
-    @SequenceGenerator(name = "product_seq", sequenceName = "product_seq", allocationSize = 50)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_seq")
+//    @SequenceGenerator(name = "product_seq", sequenceName = "product_seq", allocationSize = 50)
+//    private long id;
 
     private String name;
 

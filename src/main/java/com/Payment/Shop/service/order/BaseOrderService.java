@@ -15,6 +15,7 @@ import com.Payment.Shop.repository.OrderRepository;
 import com.Payment.Shop.security.JwtUtil;
 import com.Payment.Shop.service.payment.strategy.PaymentStrategy;
 import com.Payment.Shop.service.product.IProductService;
+import jakarta.persistence.OptimisticLockException;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -65,6 +66,9 @@ public class BaseOrderService implements IOrderService {
                 .toList();
 
         List<ProductVariant> productVariants= productService.findAllProductVariantByVariantId(productVariantIds);
+
+        // Load product variants in and lock using Pessimistic lock
+//        List<ProductVariant> productVariants= productService.findAllProductVariantByVariantIdWithLock(productVariantIds);
 
         // Validate stock
         this.validateStock(productVariants, variantDtoMap);
@@ -120,7 +124,9 @@ public class BaseOrderService implements IOrderService {
 //        }
 
         // Update stock
-        this.updateStock(productVariants, variantDtoMap);
+        this.updateStockOptimistic(productVariants, variantDtoMap);
+
+//        this.updateStock(productVariants, variantDtoMap);
 
         return modelMapper.map(savedOrder, BaseOrderResponse.class);
     }
@@ -177,5 +183,26 @@ public class BaseOrderService implements IOrderService {
         }
 
         productService.saveAllProductVariant(productVariants);
+    }
+
+    // Optimistic lock
+    private void updateStockOptimistic( List<ProductVariant> productVariants, Map<Long, ProductVariantDto> variantDtoMap) {
+        for(ProductVariant productVariant : productVariants){
+            Integer requestedQuantity = variantDtoMap.get(productVariant.getId()).getQuantity();
+
+            int updatedRows = productService.updateStockOptimistic(productVariant.getId(), requestedQuantity);
+
+
+            if (updatedRows == 0) {
+                // If no rows were updated, it means the condition failed (stock changed)
+                log.error("Optimistic lock failure: The product stock for variant ID {} was modified by another transaction.",
+                        productVariant.getId());
+                throw new OptimisticLockException("Out of stock. Please try again.");
+            }
+
+            log.info("Updated stock for variant ID: {}, new stock: {}", productVariant.getId(), productVariant.getStock() - requestedQuantity);
+        }
+
+
     }
 }

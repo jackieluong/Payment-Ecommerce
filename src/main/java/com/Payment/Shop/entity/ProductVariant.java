@@ -14,14 +14,14 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class ProductVariant {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private long id;
-
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "variant_seq")
-    @SequenceGenerator(name = "variant_seq", sequenceName = "variant_seq", allocationSize = 50)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "variant_seq")
+//    @SequenceGenerator(name = "variant_seq", sequenceName = "variant_seq", allocationSize = 50)
+//    private long id;
 
     private String sku;
 
